@@ -27,6 +27,5 @@ export const listen = () => {
   // 60 GLOBAL_VAR_INDEX0
   message.lc0(0x60);
 
-  const action = message.getData();
-  return action;
+  return message;
 }

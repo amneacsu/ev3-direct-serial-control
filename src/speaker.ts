@@ -9,5 +9,5 @@ export const tone = (level: number, frequency: number, duration: number) => {
   message.lc2(frequency); // FREQUENCY
   message.lc2(duration); // DURATION
 
-  return message.getData();
+  return message;
 }

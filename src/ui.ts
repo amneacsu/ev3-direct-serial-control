@@ -11,7 +11,7 @@ export const fillRect = (c: number, x: number, y: number, w: number, h: number) 
   message.lc2(w);
   message.lc2(h);
 
-  return message.getData();
+  return message;
 }
 
 export const pixel = (c: number, x: number, y: number) => {
@@ -23,12 +23,12 @@ export const pixel = (c: number, x: number, y: number) => {
   message.lc2(x);
   message.lc2(y);
 
-  return message.getData();
+  return message;
 };
 
 export const update = () => {
   const message = new Message();
   message.lc0(0x84); // opUI_DRAW
   message.lc0(0x00); // UPDATE
-  return message.getData();
+  return message;
 };

@@ -1,4 +1,5 @@
 import * as SerialPort from 'serialport';
+import Message from './message';
 
 class Comm {
   counter: number
@@ -20,14 +21,15 @@ class Comm {
     this.connection = connection;
   }
 
-  dispatch(cmds: Buffer[], cb?: (data: any) => void) {
+  dispatch(cmds: Message[], cb?: (data: any) => void) {
     this.counter += 1;
 
     const header = Buffer.alloc(7);
     header.writeUInt16LE(this.counter, 2);
     header.writeUInt8(0x80, 4); // direct command no reply
 
-    const data = Buffer.concat([header, ...cmds]);
+    const cmdBuffers = cmds.map(cmd => cmd.getData());
+    const data = Buffer.concat([header, ...cmdBuffers]);
     data.writeUInt16LE(data.length - 2, 0);
 
     this.connection.write(data, function(err) {

@@ -12,5 +12,5 @@ export const outputStepSpeed = () => {
   message.lc2(180); // STEP3
   message.lc0(1); // BRAKE
 
-  return message.getData();
+  return message;
 }
