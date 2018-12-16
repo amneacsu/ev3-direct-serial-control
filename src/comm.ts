@@ -20,7 +20,7 @@ class Comm {
     this.connection = connection;
   }
 
-  dispatch(cmds: [Buffer], cb?: (data: any) => void) {
+  dispatch(cmds: Buffer[], cb?: (data: any) => void) {
     this.counter += 1;
 
     const header = Buffer.alloc(7);
