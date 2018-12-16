@@ -35,7 +35,7 @@ class Comm {
     const data = Buffer.concat([header, ...cmds]);
     data.writeUInt16LE(data.length - 2);
 
-    cb(data);
+    if (cb) cb(data);
 
     this.port.write(data, function(err) {
       if (err) {
