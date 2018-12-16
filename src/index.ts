@@ -1,13 +1,11 @@
 import Comm from './comm';
-import Motor from './motor';
-import Speaker from './speaker';
+import { outputStepSpeed } from './motor';
+import { tone } from './speaker';
 
 const port = new Comm('/dev/tty.EV3-SerialPort-1');
-const m1 = new Motor();
-const move = m1.outputStepSpeed();
+const move = outputStepSpeed();
 
-const s1 = new Speaker();
-const zz = s1.tone(2, 1000, 1000);
+const zz = tone(2, 1000, 1000);
 
 setInterval(() => {
   port.dispatch([move, zz]);
