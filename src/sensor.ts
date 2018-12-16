@@ -1,4 +1,4 @@
-const Message = require('./message');
+import Message from './message';
 
 class Sensor {
   listen() {
@@ -33,4 +33,4 @@ class Sensor {
   }
 }
 
-module.exports = Sensor;
+export default Sensor;

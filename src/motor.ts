@@ -1,32 +1,17 @@
-const Message = require('./message');
+import Message from './message';
 
 class Motor {
   outputStepSpeed() {
     const message = new Message();
 
-    // opOUTPUT_STEP_SPEED
-    message.lc0(0xAE);
-
-    // (Data8) LAYER – Specify chain layer number, [0 - 3]
-    message.lc0(0);
-
-    // (Data8) NOS – Output bit field, [0x00 – 0x0F]
-    message.lc0(0x03);
-
-    // (Data8) SPEED – Power level, [-100 - 100]
-    message.lc1(50);
-
-    // (Data32) STEP1 – Tacho pulses during ramp up
-    message.lc0(0);
-
-    // (Data32) STEP2 – Tacho pulses during continues run
-    message.lc2(900);
-
-    // (Data32) STEP3 – Tacho pulses during ramp down
-    message.lc2(180);
-
-    // (Data8) BRAKE - Specify break level, [0: Float, 1: Break]
-    message.lc0(1);
+    message.lc0(0xAE); // opOUTPUT_STEP_SPEED
+    message.lc0(0); // LAYER = 0
+    message.lc0(0x03); // NOS = MOTOR_A + MOTOR_B
+    message.lc1(50); // SPEED = 50 – Power level, [-100 - 100]
+    message.lc0(0); // STEP1
+    message.lc2(900); // STEP2
+    message.lc2(180); // STEP3
+    message.lc0(1); // BRAKE
 
     return message.getData();
   }
@@ -63,4 +48,4 @@ class Motor {
   // }
 }
 
-module.exports = Motor;
+export default Motor;

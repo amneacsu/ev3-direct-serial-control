@@ -1,7 +1,8 @@
 {
   "name": "ev3-direct-serial-control",
   "version": "1.0.0",
-  "description": "",
+  "description": "nodejs libs for direct control over serial of EV3 brick (firmware 1.09D)",
+  "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
   "scripts": {
     "start": "ts-node src/index.ts"
@@ -9,6 +10,7 @@
   "author": "Andrei Neacșu",
   "license": "ISC",
   "devDependencies": {
+    "@types/serialport": "^7.0.1",
     "serialport": "^7.1.0",
     "ts-node": "^7.0.1",
     "typescript": "^3.2.2"

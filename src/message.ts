@@ -1,9 +1,11 @@
 class Message {
+  items: [Buffer?]
+
   constructor() {
     this.items = [];
   }
 
-  addItem(l, cb) {
+  addItem(l: number, cb: (b: Buffer) => void) {
     const b = Buffer.alloc(l);
     cb(b);
     this.items.push(b);
@@ -13,25 +15,25 @@ class Message {
     return Buffer.concat(this.items);
   }
 
-  lc0(byte) {
+  lc0(byte: number) {
     this.addItem(1, (b) => {
-      b.writeUInt8(byte);
+      b.writeUInt8(byte, 0);
     });
   }
 
-  lc1(byte) {
+  lc1(byte: number) {
     this.addItem(2, (b) => {
-      b.writeUInt8(0x81);
+      b.writeUInt8(0x81, 0);
       b.writeUInt8(byte, 1);
     });
   }
 
-  lc2(bytes) {
+  lc2(bytes: number) {
     this.addItem(3, (b) => {
-      b.writeUInt8(0x82);
+      b.writeUInt8(0x82, 0);
       b.writeUInt16LE(bytes, 1);
     });
   }
 }
 
-module.exports = Message;
+export default Message;

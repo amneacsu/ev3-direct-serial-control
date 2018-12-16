@@ -1,6 +1,6 @@
-const Message = require('./message');
+import Message from './message';
 
-const fillRect = (c, x, y, w, h) => {
+export const fillRect = (c: number, x: number, y: number, w: number, h: number) => {
   const message = new Message();
   message.lc0(0x84); // opUI_DRAW
   message.lc0(0x09); // FILLRECT
@@ -14,7 +14,7 @@ const fillRect = (c, x, y, w, h) => {
   return message.getData();
 }
 
-const pixel = (c, x, y) => {
+export const pixel = (c: number, x: number, y: number) => {
   const message = new Message();
   message.lc0(0x84); // opUI_DRAW
   message.lc0(0x02); // PIXEL
@@ -26,15 +26,9 @@ const pixel = (c, x, y) => {
   return message.getData();
 };
 
-const update = () => {
+export const update = () => {
   const message = new Message();
   message.lc0(0x84); // opUI_DRAW
   message.lc0(0x00); // UPDATE
   return message.getData();
-};
-
-module.exports = {
-  fillRect,
-  update,
-  pixel,
 };

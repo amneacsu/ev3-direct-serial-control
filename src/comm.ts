@@ -1,6 +1,9 @@
-const SerialPort = require('serialport')
+import * as SerialPort from 'serialport';
 
 class Comm {
+  counter: number
+  port: SerialPort
+
   constructor() {
     this.counter = 0;
 
@@ -17,34 +20,26 @@ class Comm {
     this.port = port;
   }
 
-  dispatchNoReply(cmds, cb) {
-    this.dispatch(0x80, cmds, cb);
-  }
-
-  dispatchReply(cmds, cb) {
-    this.dispatch(0x00, cmds, cb);
-  }
-
-  dispatch(t, cmds, cb) {
+  dispatch(cmds: [Buffer], cb?: (data: any) => void) {
     this.counter += 1;
 
     const header = Buffer.alloc(7);
     header.writeUInt16LE(this.counter, 2);
-    header.writeUInt8(t, 4); // direct command no reply
+    header.writeUInt8(0x80, 4); // direct command no reply
 
     const data = Buffer.concat([header, ...cmds]);
-    data.writeUInt16LE(data.length - 2);
-
-    if (cb) cb(data);
+    data.writeUInt16LE(data.length - 2, 0);
 
     this.port.write(data, function(err) {
       if (err) {
         return console.error('Error on write: ', err.message)
       }
 
-      // console.log(data)
+      if (cb) {
+        cb(data);
+      }
     });
   }
 }
 
-module.exports = Comm;
+export default Comm;
