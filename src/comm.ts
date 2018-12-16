@@ -2,22 +2,22 @@ import * as SerialPort from 'serialport';
 
 class Comm {
   counter: number
-  port: SerialPort
+  connection: SerialPort
 
-  constructor() {
+  constructor(port: string) {
     this.counter = 0;
 
-    const port = new SerialPort('/dev/tty.EV3-SerialPort-1', {
+    const connection = new SerialPort(port, {
       baudRate: 460800,
       // baudRate: 57600,
     });
 
     // Open errors will be emitted as an error event
-    port.on('error', function(err) {
+    connection.on('error', function(err) {
       console.log('Error: ', err.message)
     });
 
-    this.port = port;
+    this.connection = connection;
   }
 
   dispatch(cmds: [Buffer], cb?: (data: any) => void) {
@@ -30,7 +30,7 @@ class Comm {
     const data = Buffer.concat([header, ...cmds]);
     data.writeUInt16LE(data.length - 2, 0);
 
-    this.port.write(data, function(err) {
+    this.connection.write(data, function(err) {
       if (err) {
         return console.error('Error on write: ', err.message)
       }
