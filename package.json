@@ -1,15 +1,16 @@
 {
-  "name": "1",
+  "name": "ev3-direct-serial-control",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "ts-node src/index.ts"
   },
-  "author": "",
+  "author": "Andrei Neacșu",
   "license": "ISC",
   "devDependencies": {
-    "johnny-five": "^1.0.0",
-    "serialport": "^7.1.0"
+    "serialport": "^7.1.0",
+    "ts-node": "^7.0.1",
+    "typescript": "^3.2.2"
   }
 }
