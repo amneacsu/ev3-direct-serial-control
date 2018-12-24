@@ -1,6 +1,6 @@
-import Comm from './comm';
-import { tone } from './speaker';
-import { outputStepSpeed, MOTOR_A, MOTOR_D } from './motor';
+import Comm from './comms';
+import { tone } from './comms/speaker';
+import { outputStepSpeed, MOTOR_A, MOTOR_D } from './comms/motor';
 
 const port = new Comm('/dev/tty.EV3-SerialPort-1');
 
