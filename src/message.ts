@@ -1,8 +1,20 @@
 class Message {
   items: [Buffer?]
 
-  constructor() {
+  constructor(opCode: number, subCode?: number) {
     this.items = [];
+
+    if (opCode) {
+      this.addItem(1, (b) => {
+        b.writeUInt8(opCode, 0);
+      });
+    }
+
+    if (subCode) {
+      this.addItem(1, (b) => {
+        b.writeUInt8(subCode, 0);
+      });
+    }
   }
 
   addItem(l: number, cb: (b: Buffer) => void) {
