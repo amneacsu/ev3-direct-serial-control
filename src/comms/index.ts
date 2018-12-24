@@ -11,7 +11,7 @@ class Comm {
   connection: SerialPort
   listeners: Listener[]
 
-  constructor(port: string) {
+  constructor(port: string, onOpen: () => void) {
     this.counter = 0;
     this.listeners = [];
 
@@ -24,6 +24,8 @@ class Comm {
     connection.on('error', function(err) {
       console.log('Error: ', err.message)
     });
+
+    connection.on('open', onOpen);
 
     connection.on('data', (data: Buffer) => {
       const counter = data.readUInt16LE(2);
