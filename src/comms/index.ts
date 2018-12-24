@@ -15,8 +15,10 @@ class Comm {
     this.counter = 0;
     this.listeners = [];
 
+    console.log(`Connecting to ${port}...`);
+
     const connection = new SerialPort(port, {
-      baudRate: 460800,
+      // baudRate: 460800,
       // baudRate: 57600,
     });
 
@@ -25,7 +27,10 @@ class Comm {
       console.log('Error: ', err.message)
     });
 
-    connection.on('open', onOpen);
+    connection.on('open', () => {
+      console.log('Connected!');
+      onOpen();
+    });
 
     connection.on('data', (data: Buffer) => {
       const counter = data.readUInt16LE(2);
@@ -71,10 +76,17 @@ class Comm {
       alloc(data);
     }
 
-    this.connection.write(data, function(err) {
-      if (err) {
-        return console.error('Error on write: ', err.message)
-      }
+    return new Promise((resolve) => {
+      // console.debug('Write', data);
+
+      this.connection.write(data, function(err) {
+        if (err) {
+          return console.error('Error on write: ', err.message)
+        } else {
+          console.log('send ok');
+          resolve();
+        }
+      });
     });
   }
 }

@@ -1,28 +1,27 @@
 import Comm from './comms';
 import { start, stop, setPower, outputStepSpeed, MOTOR_A, MOTOR_D } from './comms/motor';
 
-const ttyName = '/dev/tty.EV3-SerialPort-1';
-console.log(`Connecting to ${ttyName}...`);
+import Input from './input';
+
+const input = new Input();
+
+// const ttyName = '/dev/tty.EV3-SerialPort-1';
+const ttyName = '/dev/ttys001';
 const port = new Comm(ttyName, () => {
-  console.log('Connected!');
+  port.dispatch([
+    start(MOTOR_A),
+    setPower(MOTOR_A, 50),
+  ]);
 
-  // const x = start(MOTOR_A);
-  // const y = setPower(MOTOR_A, 50);
-  //
-  // port.dispatch([x, y]);
-  //
-  // setTimeout(() => {
-  //   const z = stop(MOTOR_A, true);
-  //   port.dispatch([z]);
-  // }, 2000);
-
-  process.on('SIGINT', function() {
+  setTimeout(() => {
     const z = stop(MOTOR_A, true);
     port.dispatch([z]);
+  }, 2000);
 
-    console.log("Caught interrupt signal");
-
-    process.exit();
+  input.onKey('x', () => {
+    port.dispatch([stop(MOTOR_A, true)]).then(() => {
+      process.exit(0);
+    });
   });
 
 });

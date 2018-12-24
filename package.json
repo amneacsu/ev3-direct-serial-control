@@ -5,7 +5,8 @@
   "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts"
+    "start": "ts-node src/index.ts",
+    "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0"
   },
   "author": "Andrei Neacșu",
   "license": "ISC",
