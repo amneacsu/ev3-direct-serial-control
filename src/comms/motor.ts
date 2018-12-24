@@ -3,6 +3,7 @@ import Message from './message';
 const opOUTPUT_STOP = 0xA3;
 const opOUTPUT_POWER = 0xA4;
 const opOUTPUT_START = 0xA6;
+const opOUTPUT_POLARITY = 0xA7;
 const opOUTPUT_STEP_SPEED = 0xAE;
 const opOUTPUT_TIME_SPEED = 0xAF;
 
@@ -78,3 +79,12 @@ export const outputTimeSpeed = (
 
   return message;
 }
+
+export const setPolarity = (motors: number, polarity: number) => {
+  const message = new Message(opOUTPUT_POLARITY);
+
+  message.lc0(0);
+  message.lc0(motors);
+  message.lc1(polarity);
+  return message;
+};

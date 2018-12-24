@@ -2,27 +2,55 @@ import Comm from './comms';
 import { start, stop, setPower, outputStepSpeed, MOTOR_A, MOTOR_D } from './comms/motor';
 
 import Input from './input';
+import Azimuth from './Azimuth';
+
 
 const input = new Input();
+const azimuth = new Azimuth();
 
-// const ttyName = '/dev/tty.EV3-SerialPort-1';
-const ttyName = '/dev/ttys001';
+const ttyName = '/dev/tty.EV3-SerialPort-1';
+// const ttyName = '/dev/ttys001';
 const port = new Comm(ttyName, () => {
-  port.dispatch([
-    start(MOTOR_A),
-    setPower(MOTOR_A, 50),
-  ]);
-
-  setTimeout(() => {
-    const z = stop(MOTOR_A, true);
-    port.dispatch([z]);
-  }, 2000);
+  // port.dispatch([
+  //   start(MOTOR_A),
+  //   setPower(MOTOR_A, 50),
+  // ]);
+  //
+  // setTimeout(() => {
+  //   const z = stop(MOTOR_A, true);
+  //   port.dispatch([z]);
+  // }, 2000);
 
   input.onKey('x', () => {
     port.dispatch([stop(MOTOR_A, true)]).then(() => {
       process.exit(0);
     });
   });
+
+  input.onKey('a', () => {
+    port.dispatch(
+      azimuth.nudge(-1),
+    );
+  });
+
+  input.onKey('d', () => {
+    port.dispatch(
+      azimuth.nudge(1),
+    );
+  });
+
+  let i = 0;
+
+  const x = setInterval(() => {
+    port.dispatch(
+      azimuth.nudge(1),
+    );
+    i += 1;
+
+    if (i === 180) {
+      clearInterval(x);
+    }
+  }, 1000);
 
 });
 
