@@ -5,15 +5,12 @@
   "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node sample/index.ts",
+    "start": "node sample/index.js",
     "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0"
   },
   "author": "Andrei Neacșu",
   "license": "ISC",
   "devDependencies": {
-    "@types/serialport": "^7.0.1",
-    "serialport": "^7.1.0",
-    "ts-node": "^7.0.1",
-    "typescript": "^3.2.2"
+    "serialport": "^7.1.0"
   }
 }
