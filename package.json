@@ -1,11 +1,11 @@
 {
   "name": "ev3-direct-serial-control",
   "version": "1.0.0",
-  "description": "nodejs libs for direct control over serial of EV3 brick (firmware 1.09D)",
+  "description": "nodejs libs for direct control over BT serial of EV3 brick (firmware 1.09D)",
   "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/index.ts",
+    "start": "ts-node sample/index.ts",
     "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0"
   },
   "author": "Andrei Neacșu",

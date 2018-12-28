@@ -1,5 +1,5 @@
-import Comm from './comms';
-import { start, stop, setPower, outputStepSpeed, MOTOR_A, MOTOR_D } from './comms/motor';
+import Comm from '../lib';
+import { start, stop, setPower, outputStepSpeed, MOTOR_A, MOTOR_D } from '../lib/motor';
 
 import Input from './input';
 import Azimuth from './Azimuth';

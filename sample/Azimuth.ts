@@ -2,7 +2,7 @@ import {
   setPolarity,
   outputStepSpeed,
   MOTOR_A,
-} from './comms/motor';
+} from '../lib/motor';
 
 export default class Azimuth {
   value: number
