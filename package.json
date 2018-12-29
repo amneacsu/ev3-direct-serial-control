@@ -6,11 +6,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node sample/index.js",
-    "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0"
+    "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0",
+    "test": "mocha",
+    "test:watch": "mocha -w"
   },
   "author": "Andrei Neacșu",
   "license": "ISC",
   "devDependencies": {
+    "mocha": "^5.2.0",
     "serialport": "^7.1.0"
   }
 }
