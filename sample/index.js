@@ -5,10 +5,10 @@ const brick = new EV3.Brick();
 const port = process.argv[2] || '/dev/tty.EV3-SerialPort-1';
 
 brick.connect(port).then(() => {
-  const motor = new EV3.Input(EV3.Input.MOTOR_A);
+  const motor = new EV3.Output(EV3.Output.MOTOR_A);
   const speaker = new EV3.Speaker();
   const screen = new EV3.Screen();
-  const sensor = new EV3.Sensor();
+  const sensor = new EV3.Input();
 
   brick.dispatch([
     motor.setPower(100),
