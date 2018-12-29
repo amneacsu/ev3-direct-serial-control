@@ -10,23 +10,11 @@ brick.connect(port).then(() => {
   const screen = new EV3.Screen();
   const sensor = new EV3.Input();
 
-  brick.dispatch([
-    motor.setPower(100),
-  ]);
+  const run = () => {
+    brick.dispatch([
+      speaker.tone(1, 100, 50),
+    ]);
+  };
 
-  // setInterval(() => {
-  //   brick.dispatch([
-  //     speaker.tone(1, 100, 50),
-  //     screen.fillRect(0, 0, 0, 100, 100),
-  //   ]);
-  // }, 1000);
-
-  setInterval(() => {
-    brick.dispatch([sensor.listen()], (h) => {
-      // four byte reserve global alloc
-      h.writeUInt16LE(4, 5);
-    }).then((data) => {
-      console.log(data);
-    });
-  }, 500);
+  setInterval(run, 1000);
 });
