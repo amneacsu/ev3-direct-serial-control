@@ -12,7 +12,8 @@ brick.connect(port).then(() => {
 
   const run = () => {
     brick.dispatch([
-      speaker.tone(1, 100, 50),
+      // speaker.tone(1, 100, 50),
+      speaker.playFile('../prjs/everstorm/ok1'),
     ]);
   };
 
