@@ -5,7 +5,7 @@
   "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
   "scripts": {
-    "start": "node sample/index.js",
+    "start": "node index.js",
     "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0",
     "test": "mocha",
     "test:watch": "mocha -w"
