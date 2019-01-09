@@ -14,6 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "mocha": "^5.2.0",
-    "serialport": "^7.1.0"
+    "serialport": "^7.1.0",
+    "virtual-serialport": "^4.0.1"
   }
 }
