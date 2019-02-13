@@ -4,16 +4,21 @@ const port = process.argv[2] || '/dev/tty.EV3-SerialPort';
 
 const brick = new EV3.Brick();
 
-brick.connect(port).then(() => {
-  const motor = new EV3.Output(brick, EV3.Output.MOTOR_A);
-  const speaker = new EV3.Speaker(brick);
-  const screen = new EV3.Screen(brick);
-  const sensor = new EV3.Input(brick);
+const speakerOpcodes = require('./lib/opcodes/speaker');
+const screenOpcodes = require('./lib/opcodes/screen');
 
+brick.connect(port).then(() => {
   const run = () => {
-    speaker.tone(1, 100, 50).then(() => {
-      brick.disconnect();
-      process.exit();
+    // const x1 = screenOpcodes.fillRect(0, 0, 0, 178, 128);
+    // const x2 = screenOpcodes.pixel(1, 120, 120);
+    // const x3 = screenOpcodes.update();
+    //
+    // brick.dispatch([x1, x2, x3]);
+
+    brick.dispatch([screenOpcodes.getOsVers(128)], 0, 128).then((data) => {
+      console.log(data.toString());
+    }, (er) => {
+      console.error(er);
     });
   };
 
