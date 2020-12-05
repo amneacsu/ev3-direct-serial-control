@@ -5,7 +5,7 @@
   "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
   "engines": {
-    "node": "9"
+    "node": ">=10"
   },
   "scripts": {
     "start": "node index.js",
@@ -16,8 +16,8 @@
   "author": "Andrei Neacșu",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^5.2.0",
-    "serialport": "^7.1.0",
+    "mocha": "^8.2.1",
+    "serialport": "^9.0.3",
     "virtual-serialport": "^4.0.1"
   }
 }
