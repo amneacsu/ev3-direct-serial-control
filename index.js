@@ -20,6 +20,10 @@ brick.connect(port).then(() => {
     }, (er) => {
       console.error(er);
     });
+
+    const beep = speakerOpcodes.tone(volume = 1, freq = 1, duration = 50);
+
+    brick.dispatch([beep]);
   };
 
   run();
