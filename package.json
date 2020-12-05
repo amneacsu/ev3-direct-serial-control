@@ -4,6 +4,9 @@
   "description": "nodejs libs for direct control over BT serial of EV3 brick (firmware 1.09D)",
   "repository": "https://www.github.com/amneacsu/ev3-direct-serial-control",
   "main": "index.js",
+  "engines": {
+    "node": "9"
+  },
   "scripts": {
     "start": "node index.js",
     "mock": "socat -d -d pty,raw,echo=0 pty,raw,echo=0",
