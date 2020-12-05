@@ -1,4 +1,4 @@
-const SerialPort = require('serialport');
+const SerialPort = require('virtual-serialport');
 
 const EV3 = require('./lib');
 const speakerOpcodes = require('./lib/opcodes/speaker');
@@ -20,7 +20,7 @@ const run = (conn) => {
 };
 
 const port = process.argv[2] || '/dev/tty.EV3-SerialPort';
-const connection = new SerialPort(port);
+const connection = new SerialPort(port, {});
 console.log(`Connecting to ${port}...`);
 connection.on('error', (err) => console.log('Error: ', err.message));
 connection.on('open', () => run(connection));
